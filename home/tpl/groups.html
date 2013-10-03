@@ -1,0 +1,39 @@
+<h2>班级</h2>
+
+<form class="form-inline" style="margin:0px;" method="post" action="?act=newgroup">
+	<input name="gname" type="text" class="input-small" placeholder="班级">
+	<input name="pinyin" type="text" class="input-small" placeholder="拼音">
+	<button type="submit" class="btn">提交</button>
+</form>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>pinyin</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php if (isset($list) && is_array($list)) foreach ($list as &$item) { ?>
+		<tr class="">
+			<td><?php echo $item['group_id']; ?></td>
+			<td><?php echo $item['name']; ?></td>
+			<td><?php echo $item['pinyin']; ?></td>
+		</tr>
+		<?php } ?>
+	</tbody>
+</table>
+
+<div class="pagination pagination-centered">
+	<ul>
+		<li class="disabled"><a href="#">«</a></li>
+		<li class="active"><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li><a href="#">»</a></li>
+	</ul>
+</div>
+

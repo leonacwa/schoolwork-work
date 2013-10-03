@@ -1,0 +1,17 @@
+<hr/>
+<footer>powered by . 2013~<?php echo date("Y"); ?></footer>
+<?php echo timer_spent(), ' s'; ?>
+</div><!--/.fluid-container-->
+<script src="static/script/jquery.min.js"></script>
+<script src="static/script/bootstrap.min.js"></script>
+<!--[if IE 6]>    
+<script src="static/script/ie6.min.js"></script>
+<![endif]-->
+<script src="static/script/app.js"></script>
+
+<?php if( isset($js) && is_array( $js ) ): ?>
+<?php foreach( $js as $jfile ): ?><script type="text/javascript" src="static/script/<?=$jfile;?>" ></script>
+<?php endforeach; ?>
+<?php endif; ?>
+	</body>
+</html>

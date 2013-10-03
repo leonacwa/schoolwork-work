@@ -1,0 +1,43 @@
+<form class="form-signin" method="post" action="?act=newwork" enctype="multipart/form-data">
+	<input type="hidden" name="act" value="newwork">
+
+	<h2>新建作业</h2>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			标题:
+			<input name="title" type="text" class="input-small" placeholder="标题" style="width:90%;">
+		</div>
+		<div class="row-fluid">
+			<div class="span2">
+				是否显示：
+				是
+				<input type="radio" checked="checked" name="is_show" value="1" />
+				否
+				<input type="radio" name="is_show" value="0" />
+			</div>
+			<div class="span5">
+				开始时间:
+				<input name="start_time" type="text" class="input-small" placeholder="yyyy-mm-dd h:m:s" style="width:80px;">
+				结束时间:
+				<input name="finish_time" type="text" class="input-small" placeholder="yyyy-mm-dd h:m:s" style="width:80px;">
+			</div>
+		</div>
+		<div class="row-fluid">
+			作业文件:
+			<input type="file" name="work_file" id="work_file" /> 
+			(你可以把作业做成一个压缩包上传)
+		</div>
+		<div class="row-fluid">
+			介绍:
+			<textarea name="intro" rows="3" cols="80" style="width:90%;"></textarea>
+		</div>
+		<div class="row-fluid">
+			<div class="span8">
+				<p align="center">
+				<button class="btn btn-large btn-primary" type="submit">提交</button>
+				</p>
+			</div>
+		</div>
+	</div>
+</form>
+

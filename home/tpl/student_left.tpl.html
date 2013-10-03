@@ -1,0 +1,13 @@
+<div class="well sidebar-nav">
+	<ul class="nav nav-list">
+
+		<li class="nav-header">作业</li>
+		<li <?php if( g('act') == 's_worklist' ){ ?> class="active"<?php }?>><a href="<?php echo go_url('s_worklist');?>">作业列表</a></li>
+
+		<li <?php if( g('act') == 's_mysolution' ){ ?> class="active"<?php }?>><a href="<?php echo go_url('s_mysolution');?>">我的解答</a></li>
+
+		<li class="nav-header">菜单</li>
+		<li <?php if( g('act') == 'modify' ){ ?> class="active"<?php }?>><a href="<?php echo go_url('modify');?>">修改个人信息</a></li>
+
+	</ul>
+</div><!--/.well -->

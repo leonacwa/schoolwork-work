@@ -1,0 +1,4 @@
+<?php
+
+render(array(), 'index');
+?>
