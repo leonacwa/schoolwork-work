@@ -36,6 +36,7 @@ $GLOBALS['config'] = array(
 
 
 	'site_name' => '学生作业管理系统',
+	'upload_path' => 'download'.DIRECTORY_SEPARATOR,
 
 );
 

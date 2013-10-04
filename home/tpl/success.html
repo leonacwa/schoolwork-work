@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <?php
 if (!isset($top_title)) {
-	$top_title = "失败";
+	$top_title = "成功";
 }   
 ?>
+
 <html lang="zh-cn">
 	<head>
 		<meta charset="utf-8">
@@ -42,7 +43,16 @@ if (!isset($top_title)) {
 		<div class="container">
 			<div class="row-fluid">
 				<div class="span12">
-					<?php echo $error; ?>
+					<?php if (isset($success)) echo $success; ?>
+					点击[
+					<?php
+					if (isset($jump_url)) {
+						echo  "<a href=\"$jump_url\"> 链接 </a>";
+					} else {
+						echo  "<a href=\"javascript:history.go(-1);\"> 链接 </a>";
+					}
+					?>
+					]继续。
 				</div><!--/span-->
 			</div><!--/row-->
 

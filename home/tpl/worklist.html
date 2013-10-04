@@ -10,31 +10,63 @@
 			<th>发布者</th>
 			<th>显示?</th>
 			<th>文件</th>
+			<th>操作</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php if (isset($list) && is_array($list)) foreach ($list as &$item) { ?>
 		<tr class="">
 			<td><?php echo $item['work_id']; ?></td>
-			<td><?php echo $item['title']; ?></td>
+			<td><a href="<?php echo '?act=t_work&work_id=', intval($item['work_id']);?>"><?php echo $item['title']; ?></a></td>
 			<td><?php echo date('Y-m-d H:i', $item['start_time']); ?></td>
 			<td><?php echo date('Y-m-d H:i', $item['finish_time']); ?></td>
 			<td><?php echo $item['pub_un']; ?></td>
 			<td><?php echo $item['is_show'] ? '是' : '否'; ?></td>
 			<td><?php echo $item['res']; ?></td>
+			<td>删除·
+				<?php if ($item['is_show']) { ?>
+				<a href="<?php echo go_url('t_show_work', 'work_id='. $item['work_id']. '&is_show=0');?>">隐藏</a>
+				<?php } else { ?>
+				<a href="<?php echo go_url('t_show_work', 'work_id='. $item['work_id']. '&is_show=1');?>">显示</a>
+				<?php } ?>
+			</td>
 		</tr>
 		<?php } ?>
 	</tbody>
 </table>
 
+<?php
+$pre_page = $cur_page - 1;
+$next_page = $cur_page + 1;
+$_url = go_url('worklist', 'pn=');
+
+$_start = max(1, $cur_page - 5);
+$_end = min($total_page, max($cur_page + 5, $_start + 10));
+
+?>
 <div class="pagination pagination-centered">
 	<ul>
-		<li class="disabled"><a href="#">«</a></li>
-		<li class="active"><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#">»</a></li>
+
+		<?php if ($pre_page >= 1) { ?>
+		<li><a href="<?php echo $_url. $pre_page; ?>">«</a></li>
+		<?php } else { ?>
+		<li class="disabled"><a href="">«</a></li>
+		<?php } ?>
+
+		<?php for ($i = $_start; $i <= $_end; $i++) { ?>
+		<?php if ($i == $cur_page) { ?>
+			<li class="active"><a href=""><?php echo $i; ?></a></li>
+		<?php } else { ?>
+		<li><a href="<?php echo $_url. $i; ?>"><?php echo $i; ?></a></li>
+		<?php }
+		}
+	   	?>
+
+		<?php if ($next_page <= $total_page) { ?>
+		<li><a href="<?php echo $_url. $next_page; ?>">»</a></li>
+		<?php } else { ?>
+		<li class="disabled"><a href="">»</a></li>
+		<?php } ?>
 	</ul>
 </div>
+

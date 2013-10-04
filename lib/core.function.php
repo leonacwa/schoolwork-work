@@ -26,11 +26,17 @@ function render($data=null, $tpl = 'default') {
 }
 // 错误页
 function error($data, $tpl='error') {
+	if (!isset($data['top_title'])) {
+		$data['top_title'] = "失败";
+	}
 	render($data, $tpl);
 	die();
 }
 // 成功页
 function success($data, $tpl='success') {
+	if (!isset($data['top_title'])) {
+		$data['top_title'] = "成功";
+	}
 	render($data, $tpl);
 	die();
 }

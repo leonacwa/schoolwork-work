@@ -10,6 +10,13 @@ function is_login() {
 	return !empty($_SESSION['u']) && is_array($_SESSION['u']);
 }
 
+function get_login_un() {
+	if (is_login()) {
+		return $_SESSION['u']['un'];
+	}
+	return null;
+}
+
 // --------------------------------------------------------
 
 function forward($url) {

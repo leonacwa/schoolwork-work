@@ -1,5 +1,10 @@
 <h2>作业列表</h2>
 
+<?php if (isset($work)) { ?>
+<h3><?php echo $work['title']; ?> </h3>
+<?php echo $work['pub_un']; ?>
+<?php } ?>
+
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
@@ -25,14 +30,44 @@
 	</tbody>
 </table>
 
+<?php
+$cur_page = $pn;
+$pre_page = $pn - 1;
+$next_page = $pn + 1;
+if (isset($work_id)) {
+	$_url = go_url('studentsolution', 'work_id='. $work_id .'&pn=');
+} else {
+	$_url = go_url('studentsolution', 'pn=');
+}
+
+$_start = max(1, $pn - 5);
+$_end = min($total_page, max($cur_page + 5, $_start + 10));
+
+?>
+
 <div class="pagination pagination-centered">
 	<ul>
-		<li class="disabled"><a href="#">«</a></li>
-		<li class="active"><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#">»</a></li>
+
+		<?php if ($pre_page >= 1) { ?>
+		<li><a href="<?php echo $_url. $pre_page; ?>">«</a></li>
+		<?php } else { ?>
+		<li class="disabled"><a href="">«</a></li>
+		<?php } ?>
+
+		<?php for ($i = $_start; $i <= $_end; $i++) { ?>
+		<?php if ($i == $cur_page) { ?>
+			<li class="active"><a href=""><?php echo $i; ?></a></li>
+		<?php } else { ?>
+		<li><a href="<?php echo $_url. $i; ?>"><?php echo $i; ?></a></li>
+		<?php }
+		}
+	   	?>
+
+		<?php if ($next_page <= $total_page) { ?>
+		<li><a href="<?php echo $_url. $next_page; ?>">»</a></li>
+		<?php } else { ?>
+		<li class="disabled"><a href="">»</a></li>
+		<?php } ?>
 	</ul>
 </div>
+
