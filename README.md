@@ -10,3 +10,4 @@ schoolwork-work
 
 
 ## 安装
+需要在网站目录下增加teacher_work和student_work文件夹，保存老师和学生的作业    
