@@ -1,0 +1,51 @@
+<input type="hidden" name="act" value="newwork">
+
+<div class="container-fluid">
+	<?php if (isset($error)) { ?>
+	<div class="row-fluid">
+		<span class="label label-warning">
+			<?php echo $error; ?>
+		</span>
+		<br/>
+	</div>
+	<?php  } ?>
+	<div class="row-fluid">
+		<h4><?php @print($work['title']); ?></h4>
+	</div>
+	<div class="row-fluid">
+		[<a href="<?php echo go_url('studentsolution', 'work_id='.$work['work_id']); ?>">学生作业</a>]
+		<br/>
+		授权班级：<?php foreach ($auth_gp as $item) echo $item['name'], ",";?>
+		<br/>
+
+		<br/>
+		作业：
+		<?php if (empty($work['res'])) { 
+		echo "未上传!"; 
+		} else { 
+		echo $work['res']; 
+		}
+		?>
+	</div>
+
+	<div class="row-fluid">
+		<div class="span4">
+			开始时间:
+			<?php @print( date('Y-m-d H:i', $work['start_time']) ); ?>
+		</div>
+		<div class="span4">
+			结束时间:
+			<?php @print( date('Y-m-d H:i', $work['finish_time']) ); ?>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<h4>介绍:</h4>
+		<p>
+		<?php @print( htmlspecialchars( $work['intro'] )); ?>
+		</p>
+	</div>
+	<div class="row-fluid">
+		<hr/>
+	</div>
+
+</div>

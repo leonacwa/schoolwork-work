@@ -1,7 +1,8 @@
 <h2>班级</h2>
 
-<form class="form-inline" style="margin:0px;" method="post" action="?act=newgroup">
-	<input name="gname" type="text" class="input-small" placeholder="班级">
+<form class="form-inline" style="margin:0px;" method="post" action="?act=t_addgroup">
+	增加班级：
+	<input name="name" type="text" class="input-small" placeholder="班级">
 	<input name="pinyin" type="text" class="input-small" placeholder="拼音">
 	<button type="submit" class="btn">提交</button>
 </form>
@@ -12,6 +13,7 @@
 			<th>#</th>
 			<th>Name</th>
 			<th>pinyin</th>
+			<th>操作</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -20,20 +22,43 @@
 			<td><?php echo $item['group_id']; ?></td>
 			<td><?php echo $item['name']; ?></td>
 			<td><?php echo $item['pinyin']; ?></td>
+			<td><?php echo '<a href="?act=t_delgroup&group_id=', $item['group_id'], '" title="删除~ ', $item['name'], '">', 'Del</a>'; ?></td>
 		</tr>
 		<?php } ?>
 	</tbody>
 </table>
+<?php
+$pre_page = $cur_page - 1;
+$next_page = $cur_page + 1;
+$_url = go_url('groups', 'pn=');
 
+$_start = max(1, $cur_page - 5);
+$_end = min($total_page, max($cur_page + 5, $_start + 10));
+
+?>
 <div class="pagination pagination-centered">
 	<ul>
-		<li class="disabled"><a href="#">«</a></li>
-		<li class="active"><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#">»</a></li>
+
+		<?php if ($pre_page >= 1) { ?>
+		<li><a href="<?php echo $_url. $pre_page; ?>">«</a></li>
+		<?php } else { ?>
+		<li class="disabled"><a href="">«</a></li>
+		<?php } ?>
+
+		<?php for ($i = $_start; $i <= $_end; $i++) { ?>
+		<?php if ($i == $cur_page) { ?>
+			<li class="active"><a href=""><?php echo $i; ?></a></li>
+		<?php } else { ?>
+		<li><a href="<?php echo $_url. $i; ?>"><?php echo $i; ?></a></li>
+		<?php }
+		}
+	   	?>
+
+		<?php if ($next_page <= $total_page) { ?>
+		<li><a href="<?php echo $_url. $next_page; ?>">»</a></li>
+		<?php } else { ?>
+		<li class="disabled"><a href="">»</a></li>
+		<?php } ?>
 	</ul>
 </div>
 
